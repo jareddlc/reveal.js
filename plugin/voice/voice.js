@@ -12,6 +12,7 @@ var STATE_MIC = false;
 var STATE_SPK = false;
 var ROOMNAME;
 var APIKEY;
+var EMAIL;
 var HOST = 'speakit.io';
 var room;
 var voice;
@@ -33,10 +34,11 @@ var voice;
   }, false);
 
   // grab the lastest speakit.io library
-  loadScript('http://'+HOST+'/static/js/SpeakItClient.js', function() {
+  loadScript('https://'+HOST+'/static/js/SpeakItClient.js', function() {
     // grab html config
     ROOMNAME = Reveal.getConfig().voiceRoom;
     APIKEY = Reveal.getConfig().voiceAPIKey;
+    EMAIL = Reveal.getConfig().voiceEmail;
 
     // initialize speakit.io library
     var SpeakIt = require('SpeakItClient');
@@ -103,7 +105,8 @@ var joinRoom = function() {
   }
   var roomData = {
     room: ROOMNAME,
-    keycode: APIKEY
+    apiKey: APIKEY,
+    email: EMAIL
   };
 
   room = voice.joinRoom(roomData);
